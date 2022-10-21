@@ -36,9 +36,5 @@ export const addHeroShema = yup.object().shape({
     .required(isRequiredError)
     .min(4, "superpowers must be 7 digits minimum")
     .required(isRequiredError),
-		Images: yup
-    .string()
-    .required(isRequiredError)
-    .min(7, "link must be 7 digits minimum")
-    .required(isRequiredError)
+		
 });

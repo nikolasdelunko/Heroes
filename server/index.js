@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 let cors = require("cors");
 const fileUpload = require("express-fileupload");
 const heroesRouter = require("./api/heroes/index");
+const uploadRouter = require("./api/photos/index")
 // const path = require("path");
 
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(
 );
 
 app.use(heroesRouter);
+app.use(uploadRouter);
 
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { addHeroShema } from "../Schemes";
 import Button from "../../Button/Button";
@@ -12,8 +12,21 @@ import {
 } from "../../../store/helpers/helpersSlice";
 
 export default function AddHero({ textBtn, edit }) {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploaded, setUploaded] = useState();
   const dispatch = useDispatch();
   const activeHero = useSelector((state) => state.helpers.activeHero);
+
+  const handleUpload = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const hendleUpload = async() => {
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    const res =  await axios.post("http://localhost:8000/api/upload", formData);
+    setUploaded(res.data);
+  };
 
   return (
     <Formik
@@ -23,7 +36,7 @@ export default function AddHero({ textBtn, edit }) {
         catch_phrase: edit ? activeHero.catch_phrase : "",
         origin_description: edit ? activeHero.origin_description : "",
         superpowers: edit ? activeHero.superpowers : "",
-        Images: "",
+        Images: uploaded?.filePath || "",
       }}
       validateOnBlur
       onSubmit={async (values) => {
@@ -34,6 +47,7 @@ export default function AddHero({ textBtn, edit }) {
                 values
               )
             : axios.post("http://localhost:8000/api/heroes", values);
+          hendleUpload();
           dispatch(setActiveHero(null));
           dispatch(openModal(false));
           dispatch(openModalEdit(false));
@@ -129,14 +143,15 @@ export default function AddHero({ textBtn, edit }) {
           ) : (
             <p className="text-error">Images link</p>
           )}
-          <Field
+          <input
             className="Input-form"
             name="Images"
-            type="text"
+            accept="image/*, .png, .jpg, .gif, .web,"
+            type="file"
             label="Images"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.Images}
+            onChange={handleUpload}
+            // onBlur={handleBlur}
+            // value={values.Images}
           />
           <Button
             onClick={handleSubmit}

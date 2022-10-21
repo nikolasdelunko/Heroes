@@ -8,9 +8,9 @@ export default function Pagination() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const data = useSelector((state) => state.hero.heroes);
-	const aciveHero = useSelector((state) => state.helpers.activeHero);
+  const aciveHero = useSelector((state) => state.helpers.activeHero);
 
-	const limit = 5
+  const limit = 5;
 
   const getInfo = async () => {
     const res = await axios(
@@ -27,8 +27,8 @@ export default function Pagination() {
     ? data?.next.page - 1
     : data?.previous?.page + 1;
 
-	// ! хочу доделать пагинацию еще по цыфрам странниц
-  // const pages = Math.round(data?.length / limit); 
+  // ! хочу доробити пагинацію ще по цыфрам сторінок
+  // const pages = Math.round(data?.length / limit);
 
   return (
     <div>

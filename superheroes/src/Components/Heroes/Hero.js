@@ -18,7 +18,6 @@ export default function Hero(props) {
 
   const handleHero = (slice) => {
     dispatch(slice(true));
-    // dispatch(setActiveHero(nickname));
   };
 
   const showHero = () => {
