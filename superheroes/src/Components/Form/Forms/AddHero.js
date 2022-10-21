@@ -13,23 +13,26 @@ import {
 
 export default function AddHero({ textBtn, edit }) {
   const dispatch = useDispatch();
-  const id = useSelector((state) => state.helpers.activeHero);
+  const activeHero = useSelector((state) => state.helpers.activeHero);
 
   return (
     <Formik
       initialValues={{
-        nickname: "",
-        real_name: "",
-        catch_phrase: "",
-        origin_description: "",
-        superpowers: "",
+        nickname: edit ? activeHero.nickname : "",
+        real_name: edit ? activeHero.real_name : "",
+        catch_phrase: edit ? activeHero.catch_phrase : "",
+        origin_description: edit ? activeHero.origin_description : "",
+        superpowers: edit ? activeHero.superpowers : "",
         Images: "",
       }}
       validateOnBlur
       onSubmit={async (values) => {
         try {
           (await edit)
-            ? axios.patch(`http://localhost:8000/api/heroes/${id}`, values)
+            ? axios.patch(
+                `http://localhost:8000/api/heroes/${activeHero.id}`,
+                values
+              )
             : axios.post("http://localhost:8000/api/heroes", values);
           dispatch(setActiveHero(null));
           dispatch(openModal(false));

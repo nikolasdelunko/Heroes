@@ -18,8 +18,7 @@ export default function Main() {
   const modalDel = useSelector((state) => state.helpers.modalDel);
   const modalEdit = useSelector((state) => state.helpers.modalEdit);
   const modal = useSelector((state) => state.helpers.modal);
-  const id = useSelector((state) => state.helpers.activeHero);
-	const heroName = useSelector((state) => state.helpers.activeHeroName);
+	const heroName = useSelector((state) => state.helpers.activeHero);
 
   const modalClose = (slice) => {
     dispatch(slice(false));
@@ -49,12 +48,12 @@ export default function Main() {
             onClick={() => modalClose(openModalDel)}
             closeButton={true}
             modalClose={() => modalClose(openModalDel)}
-            text={`Do you wont remove ${heroName} ?`}
+            text={`Do you wont remove ${heroName.nickname} ?`}
             actions={
               <>
                 <Button
                   onClick={() => {
-                    hendleDelete(id)
+                    hendleDelete(heroName.id)
                   }}
                   text="Delete"
                   classN="control-btn"
@@ -78,7 +77,7 @@ export default function Main() {
             closeButton={true}
             action={"edit"}
             modalClose={() => modalClose(openModalEdit)}
-            text={`Do you wont edit  ${heroName} ?`}
+            text={`Do you wont edit  ${heroName.nickname} ?`}
           />
         </div>
       )}

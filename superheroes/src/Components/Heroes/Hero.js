@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
 import "./Style.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   openModalDel,
   openModalEdit,
   setActiveHero,
-	setActiveHeroName,
 } from "../../store/helpers/helpersSlice";
 
 export default function Hero(props) {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-	// const aciveHero = useSelector((state) => state.helpers.activeHero);
 
   const {
     card: { nickname, real_name, origin_description, Images, catch_phrase, id },
@@ -23,19 +21,14 @@ export default function Hero(props) {
     // dispatch(setActiveHero(nickname));
   };
 
-	const showHero = () => {
-		setShow(!show);
-		dispatch(setActiveHero(id));
-		dispatch(setActiveHeroName(nickname))	
-	} 
-
+  const showHero = () => {
+    setShow(!show);
+    dispatch(setActiveHero(props.card));
+  };
 
   return (
-    <div
-      className="list-items"
-      onClick={showHero}
-    >
-      <li className= "card-product">
+    <div className="list-items" onClick={showHero}>
+      <li className="card-product">
         <div className="head-card">
           <div className="card-head">
             <h3>{nickname}</h3>
@@ -63,9 +56,9 @@ export default function Hero(props) {
               classN="btn first"
             />
             <Button
-              onClick={() =>{
-								handleHero(openModalDel)
-								}}
+              onClick={() => {
+                handleHero(openModalDel);
+              }}
               text="REMOVE"
               classN="btn first"
             />
