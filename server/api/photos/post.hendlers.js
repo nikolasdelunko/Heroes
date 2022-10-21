@@ -13,9 +13,6 @@ exports.postUpload = (req, res) => {
     if (err) {
       return res.status(500).send(err);
     }
-    res.send({
-      fileName: `${file.name}`,
-      filePath: `/uploads${newFileName}`,
-    });
+    res.send(`/uploads${newFileName}`);
   });
 };

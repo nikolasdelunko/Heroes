@@ -21,12 +21,14 @@ export default function AddHero({ textBtn, edit }) {
     setSelectedFile(event.target.files[0]);
   };
 
-  const hendleUpload = async() => {
+  const hendleUpload = async () => {
     const formData = new FormData();
     formData.append("file", selectedFile);
-    const res =  await axios.post("http://localhost:8000/api/upload", formData);
-    setUploaded(res.data);
+    const res = await axios.post("http://localhost:8000/api/upload", formData);
+    return setUploaded(res.data);
   };
+
+//! ттреба доробити 148 
 
   return (
     <Formik
@@ -36,18 +38,18 @@ export default function AddHero({ textBtn, edit }) {
         catch_phrase: edit ? activeHero.catch_phrase : "",
         origin_description: edit ? activeHero.origin_description : "",
         superpowers: edit ? activeHero.superpowers : "",
-        Images: uploaded?.filePath || "",
+        Images: uploaded || "",
       }}
       validateOnBlur
       onSubmit={async (values) => {
         try {
-          (await edit)
-            ? axios.patch(
+          //! await hendleUpload(); 
+          edit
+            ? await axios.patch(
                 `http://localhost:8000/api/heroes/${activeHero.id}`,
                 values
               )
-            : axios.post("http://localhost:8000/api/heroes", values);
-          hendleUpload();
+            : await axios.post("http://localhost:8000/api/heroes", values);
           dispatch(setActiveHero(null));
           dispatch(openModal(false));
           dispatch(openModalEdit(false));
@@ -143,7 +145,7 @@ export default function AddHero({ textBtn, edit }) {
           ) : (
             <p className="text-error">Images link</p>
           )}
-          <input
+          {/* <input
             className="Input-form"
             name="Images"
             accept="image/*, .png, .jpg, .gif, .web,"
@@ -152,6 +154,15 @@ export default function AddHero({ textBtn, edit }) {
             onChange={handleUpload}
             // onBlur={handleBlur}
             // value={values.Images}
+          /> */}
+					    <Field
+            className="Input-form"
+            name="Images"
+            type="text"
+            label="Images"
+            onChange={handleChange}
+            // onBlur={handleBlur}
+            value={values.Images}
           />
           <Button
             onClick={handleSubmit}
