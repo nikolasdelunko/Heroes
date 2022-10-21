@@ -6,12 +6,13 @@ import {
   openModalDel,
   openModalEdit,
   setActiveHero,
+	setActiveHeroName,
 } from "../../store/helpers/helpersSlice";
 
 export default function Hero(props) {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-	const aciveHero = useSelector((state) => state.helpers.activeHero);
+	// const aciveHero = useSelector((state) => state.helpers.activeHero);
 
   const {
     card: { nickname, real_name, origin_description, Images, catch_phrase, id },
@@ -19,19 +20,16 @@ export default function Hero(props) {
 
   const handleHero = (slice) => {
     dispatch(slice(true));
-    dispatch(setActiveHero(nickname));
+    // dispatch(setActiveHero(nickname));
   };
 
 	const showHero = () => {
 		setShow(!show);
-		if(aciveHero === null){
 		dispatch(setActiveHero(id));
-		}else{
-			dispatch(setActiveHero(null));
-		}
-	}
+		dispatch(setActiveHeroName(nickname))	
+	} 
 
-  // onMouseMove={btnHover} onMouseLeave={of}
+
   return (
     <div
       className="list-items"
@@ -65,7 +63,9 @@ export default function Hero(props) {
               classN="btn first"
             />
             <Button
-              onClick={() => handleHero(openModalDel)}
+              onClick={() =>{
+								handleHero(openModalDel)
+								}}
               text="REMOVE"
               classN="btn first"
             />

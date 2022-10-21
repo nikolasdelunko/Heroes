@@ -24,8 +24,8 @@ const Modal = (props) => {
                 </div>
                 <div className="modal-content">
                     <p className="modal-content-text">{text}</p>
-										{action === "add" && <AddHero textBtn={"Add"} />}
-										{action === "edit" && <AddHero textBtn={"Edit"} />}
+										{action === "add" && <AddHero textBtn={"Add"} edit={false} />}
+										{action === "edit" && <AddHero textBtn={"Edit"} edit={true} />}
                     <div className='modal-control'>
                         {actions}
                     </div>

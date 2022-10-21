@@ -3,23 +3,40 @@ import { Field, Form, Formik } from "formik";
 import { addHeroShema } from "../Schemes";
 import Button from "../../Button/Button";
 import "./Style.css";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  openModalEdit,
+  setActiveHero,
+  openModal,
+} from "../../../store/helpers/helpersSlice";
 
-export default function AddHero({ textBtn }) {
+export default function AddHero({ textBtn, edit }) {
+  const dispatch = useDispatch();
+  const id = useSelector((state) => state.helpers.activeHero);
+
   return (
     <Formik
       initialValues={{
         nickname: "",
-        Name: "",
-        catchPhrase: "",
-        description: "",
-        link: "",
+        real_name: "",
+        catch_phrase: "",
+        origin_description: "",
+        superpowers: "",
+        Images: "",
       }}
       validateOnBlur
       onSubmit={async (values) => {
-        console.log(values);
-        // try {
-        //   console.log(values);
-        // } catch (e) {}
+        try {
+          (await edit)
+            ? axios.patch(`http://localhost:8000/api/heroes/${id}`, values)
+            : axios.post("http://localhost:8000/api/heroes", values);
+          dispatch(setActiveHero(null));
+          dispatch(openModal(false));
+          dispatch(openModalEdit(false));
+        } catch (e) {
+          console.log(e);
+        }
       }}
       validationSchema={addHeroShema}
     >
@@ -48,61 +65,75 @@ export default function AddHero({ textBtn }) {
             onBlur={handleBlur}
             value={values.nickname}
           />
-          {touched.Name && errors.Name ? (
-            <p className="text-error">{errors.Name}</p>
+          {touched.real_name && errors.real_name ? (
+            <p className="text-error">{errors.real_name}</p>
           ) : (
             <p className="text-error">Name</p>
           )}
           <Field
             className="Input-form"
-            name="Name"
+            name="real_name"
             type="text"
-            label="Name"
+            label="real_name"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.Name}
+            value={values.real_name}
           />
-          {touched.catchPhrase && errors.catchPhrase ? (
-            <p className="text-error">{errors.catchPhrase}</p>
+          {touched.catch_phrase && errors.catch_phrase ? (
+            <p className="text-error">{errors.catch_phrase}</p>
           ) : (
             <p className="text-error">Catch Phrase</p>
           )}
           <Field
             className="Input-form"
-            name="catchPhrase"
+            name="catch_phrase"
             type="text"
-            label="catchPhrase"
+            label="catch_phrase"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.catchPhrase}
+            value={values.catch_phrase}
           />
-          {touched.catchPhrase && errors.catchPhrase ? (
-            <p className="text-error">{errors.description}</p>
+          {touched.origin_description && errors.origin_description ? (
+            <p className="text-error">{errors.origin_description}</p>
           ) : (
             <p className="text-error">Description</p>
           )}
           <Field
             className="Input-form"
-            name="description"
+            name="origin_description"
             type="text"
-            label="description"
+            label="origin_description"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.description}
+            value={values.origin_description}
           />
-          {touched.link && errors.link ? (
-            <p className="text-error">{errors.link}</p>
+          {touched.superpowers && errors.superpowers ? (
+            <p className="text-error">{errors.superpowers}</p>
           ) : (
-            <p className="text-error">Link</p>
+            <p className="text-error">superpowers</p>
           )}
           <Field
             className="Input-form"
-            name="link"
+            name="superpowers"
             type="text"
-            label="link"
+            label="superpowers"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.link}
+            value={values.superpowers}
+          />
+          {touched.Images && errors.Images ? (
+            <p className="text-error">{errors.Images}</p>
+          ) : (
+            <p className="text-error">Images link</p>
+          )}
+          <Field
+            className="Input-form"
+            name="Images"
+            type="text"
+            label="Images"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.Images}
           />
           <Button
             onClick={handleSubmit}

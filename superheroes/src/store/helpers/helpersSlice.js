@@ -5,6 +5,7 @@ const initialState = {
   modalDel: false,
   modalEdit: false,
   activeHero: null,
+	activeHeroName: null,
 };
 
 const userSlice = createSlice({
@@ -23,6 +24,9 @@ const userSlice = createSlice({
     setActiveHero(state, action) {
       state.activeHero = action.payload;
     },
+		setActiveHeroName(state, action) {
+      state.activeHeroName = action.payload;
+    },
   },
 });
 
@@ -31,6 +35,7 @@ export const {
   openModalDel,
   openModalEdit,
   setActiveHero,
+	setActiveHeroName
 } = userSlice.actions;
 
 export default userSlice.reducer;

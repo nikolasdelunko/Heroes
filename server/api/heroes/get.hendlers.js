@@ -33,3 +33,14 @@ exports.getHeroes = (req, res) => {
 };
 
 
+
+
+
+exports.getHeroesById = (req, res) => {
+const find = heroes.find((el)=> req.params.id == el.id)
+if (!heroes) {
+	res.status(404).send(`heroes not found`).end();
+} else {
+	res.send(find).end();
+}
+}

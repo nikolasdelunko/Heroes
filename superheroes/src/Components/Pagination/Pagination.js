@@ -8,6 +8,7 @@ export default function Pagination() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const data = useSelector((state) => state.hero.heroes);
+	const aciveHero = useSelector((state) => state.helpers.activeHero);
 
 	const limit = 5
 
@@ -20,7 +21,7 @@ export default function Pagination() {
 
   useEffect(() => {
     getInfo();
-  }, [page]);
+  }, [page, aciveHero]);
 
   const currentPage = data?.next
     ? data?.next.page - 1

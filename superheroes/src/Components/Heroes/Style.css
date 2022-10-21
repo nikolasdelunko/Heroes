@@ -29,8 +29,10 @@
   background-color: #ffffff;
 }
 .list-items:hover {
-  outline: 2px solid #ff0000b3;
+  /* outline: 2px solid rgba(0, 0, 0, 0.71); */
+	border-radius: 0%;
   cursor: pointer;
+	box-shadow: 0 14px 28px rgb(0 0 0 / 81%), 0px 1px 13px 8px rgb(0 0 0 / 45%);
 }
 
 .card-product {

@@ -8,21 +8,34 @@ import {
   openModalDel,
   openModalEdit,
   openModal,
+	setActiveHero,
 } from "../../store/helpers/helpersSlice";
 import "./Style.css";
+import axios from "axios";
 
 export default function Main() {
   const dispatch = useDispatch();
   const modalDel = useSelector((state) => state.helpers.modalDel);
   const modalEdit = useSelector((state) => state.helpers.modalEdit);
   const modal = useSelector((state) => state.helpers.modal);
-  const name = useSelector((state) => state.helpers.activeHero);
+  const id = useSelector((state) => state.helpers.activeHero);
+	const heroName = useSelector((state) => state.helpers.activeHeroName);
 
   const modalClose = (slice) => {
     dispatch(slice(false));
   };
 
-  
+	const hendleDelete = async (id) => {
+		try {
+			const res = await axios.delete(`http://localhost:8000/api/heroes/${id}`)
+			if(res.status === 200) {
+				dispatch(setActiveHero(null));
+				modalClose(openModalDel)
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
   return (
     <div className="mainContainer">
@@ -36,12 +49,12 @@ export default function Main() {
             onClick={() => modalClose(openModalDel)}
             closeButton={true}
             modalClose={() => modalClose(openModalDel)}
-            text={`Do you wont remove ${name} ?`}
+            text={`Do you wont remove ${heroName} ?`}
             actions={
               <>
                 <Button
                   onClick={() => {
-                    console.log("delete");
+                    hendleDelete(id)
                   }}
                   text="Delete"
                   classN="control-btn"
@@ -65,7 +78,7 @@ export default function Main() {
             closeButton={true}
             action={"edit"}
             modalClose={() => modalClose(openModalEdit)}
-            text={`Do you wont edit  ${name} ?`}
+            text={`Do you wont edit  ${heroName} ?`}
           />
         </div>
       )}

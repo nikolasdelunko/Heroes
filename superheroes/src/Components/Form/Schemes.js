@@ -12,23 +12,33 @@ export const addHeroShema = yup.object().shape({
     .strict(true)
     .trim(isNotTrimmedError)
     .max(20, "Nice try, nobody has a nickname that long")
-    .required(isRequiredError),
-  Name: yup
+    .required(isRequiredError)
+		.matches(STR_REGEX, "Invalid symbols, use only character"),
+		real_name: yup
     .string()
     .strict(true)
     .trim(isNotTrimmedError)
     .min(3, "Must be longer than 3 characters")
     .max(20, "Nice try, nobody has a name that long")
-    .required(isRequiredError)
-    .matches(STR_REGEX, "Invalid symbols, use only character"),
-  catchPhrase: yup
+    .required(isRequiredError),
+		catch_phrase: yup
     .string()
     .strict(true)
     .trim(isNotTrimmedError)
     .required(isRequiredError),
-  description: yup
+		origin_description: yup
     .string()
     .required(isRequiredError)
-    .min(7, "Password must be 7 digits minimum")
+    .min(7, "description must be 7 digits minimum")
+    .required(isRequiredError),
+		superpowers: yup
+    .string()
+    .required(isRequiredError)
+    .min(4, "superpowers must be 7 digits minimum")
+    .required(isRequiredError),
+		Images: yup
+    .string()
+    .required(isRequiredError)
+    .min(7, "link must be 7 digits minimum")
     .required(isRequiredError)
 });
