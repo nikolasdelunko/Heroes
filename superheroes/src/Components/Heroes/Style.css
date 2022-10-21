@@ -1,0 +1,65 @@
+.items-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 800px;
+  grid-area: main;
+}
+
+.items-page-active {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 800px;
+  grid-area: main;
+}
+
+.Name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px;
+}
+
+.list-items {
+  display: flex;
+  margin-bottom: 25px;
+  border-radius: 9px;
+  background-color: #ffffff;
+}
+.list-items:hover {
+  outline: 2px solid #ff0000b3;
+  cursor: pointer;
+}
+
+.card-product {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card-product-active {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.text-left {
+  color: red;
+  margin-right: 10px;
+}
+
+.body-card {
+  visibility: hidden;
+  position: absolute;
+}
+
+.body-card-visable: {
+  visibility: visible;
+  position: relative;
+}

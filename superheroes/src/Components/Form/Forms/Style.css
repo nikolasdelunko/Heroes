@@ -1,0 +1,16 @@
+.text-error {
+  font-size: 12px;
+  cursor: pointer;
+  color: white;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+.Input-form {
+  border: none;
+  height: 25px;
+  border-radius: 5px;
+}

@@ -1,0 +1,35 @@
+body {
+  background-color: #989696;
+  width: 100%;
+  height: 50px;
+  background: radial-gradient(#000000 5%, transparent 20%) 0 0,
+    radial-gradient(rgba(0, 0, 0, 0.1) 1%, transparent 0%) 50px 50px;
+  background-color: #fff;
+  background-size: 5px 5px;
+}
+
+.control-btn {
+  width: 102px;
+  background-color: #b3382b;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: 500;
+  height: 40px;
+  border-radius: 4px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.control-btn:hover {
+  background-color: #ae3225;
+}
+
+.form-btn {
+  margin: 10px 0 0 30%;
+}
+
+.App{
+	
+}
