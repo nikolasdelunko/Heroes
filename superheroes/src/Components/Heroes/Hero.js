@@ -8,6 +8,7 @@ import {
   setActiveHero,
 } from "../../store/helpers/helpersSlice";
 
+
 export default function Hero(props) {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
@@ -33,7 +34,12 @@ export default function Hero(props) {
             <h3>{nickname}</h3>
           </div>
           <div>
-            <img src={Images} width="200" height="180" alt="laptop" />
+            <img
+              src={`http://localhost:8000/uploads/${Images}`}
+              width="200"
+              height="180"
+              alt="laptop"
+            />
           </div>
         </div>
         <div className={show ? "body-card-visable" : "body-card"}>

@@ -4,7 +4,7 @@ let cors = require("cors");
 const fileUpload = require("express-fileupload");
 const heroesRouter = require("./api/heroes/index");
 const uploadRouter = require("./api/photos/index")
-// const path = require("path");
+
 
 dotenv.config();
 
@@ -17,9 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static("static"));
-
-// app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static('public'));
 
 
 app.use(

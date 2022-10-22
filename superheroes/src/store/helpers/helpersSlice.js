@@ -5,9 +5,10 @@ const initialState = {
   modalDel: false,
   modalEdit: false,
   activeHero: null,
+  heroProfile: null,
 };
 
-const userSlice = createSlice({
+const helpersSlice = createSlice({
   name: "helpers",
   initialState,
   reducers: {
@@ -22,7 +23,13 @@ const userSlice = createSlice({
     },
     setActiveHero(state, action) {
       state.activeHero = action.payload;
-    }
+    },
+    setPhotoName(state, action) {
+      state.heroProfile.Images = action.payload;
+    },
+    setHeroProfile(state, action) {
+      state.heroProfile = action.payload;
+    },
   },
 });
 
@@ -31,6 +38,8 @@ export const {
   openModalDel,
   openModalEdit,
   setActiveHero,
-} = userSlice.actions;
+  setPhotoName,
+	setHeroProfile
+} = helpersSlice.actions;
 
-export default userSlice.reducer;
+export default helpersSlice.reducer;

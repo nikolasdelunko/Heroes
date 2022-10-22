@@ -9,10 +9,12 @@ exports.postUpload = (req, res) => {
 
   const newFileName = encodeURI(Date.now() + "-" + file.name);
 
-  file.mv(`${__dirname}../../../public/uploads/${newFileName}`, (err) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    res.send(`/uploads${newFileName}`);
-  });
+	file.mv(`${__dirname}../../../public/uploads/${newFileName}`, (err) => {
+    if (err){return res.status(500).send(err)}
+	  else{
+		res.send(`${newFileName}`);
+		}
+  }
+	
+	);
 };
