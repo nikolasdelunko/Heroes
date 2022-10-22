@@ -34,7 +34,6 @@ const fethHeroInfo = (values) => async (dispatch) => {
 };
 
 const editHeroInfo = (values, activeHero) => async (dispatch) => {
-  console.log(activeHero);
   try {
     await axios.patch(
       `http://localhost:8000/api/heroes/${activeHero.id}`,

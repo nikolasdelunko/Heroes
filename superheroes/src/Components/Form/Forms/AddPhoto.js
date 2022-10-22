@@ -4,7 +4,7 @@ import "./Style.css";
 import { fetchFileOperations } from "../../../store/helpers";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function AddPhoto(textBtn, edit) {
+export default function AddPhoto({edit}) {
   const [selectedFile, setSelectedFile] = useState(null);
   const heroProfile = useSelector((state) => state.helpers.heroProfile);
 	const activeHero = useSelector((state) => state.helpers.activeHero);
@@ -23,9 +23,10 @@ export default function AddPhoto(textBtn, edit) {
 
 
   const uploadPhoto = () => {
+		console.log(edit);
 		if(heroProfile){
      edit ? fetchFileOperations.editHeroInfo(heroProfile, activeHero)(dispatch) : fetchFileOperations.fethHeroInfo(heroProfile)(dispatch)
-		 console.log(activeHero.id)
+		 console.log(edit)
 		}
   };
 
