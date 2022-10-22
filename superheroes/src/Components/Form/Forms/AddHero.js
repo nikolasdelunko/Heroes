@@ -114,11 +114,6 @@ export default function AddHero({ textBtn, edit }) {
                 onBlur={handleBlur}
                 value={values.superpowers}
               />
-              {touched.Images && errors.Images ? (
-                <p className="text-error">{errors.Images}</p>
-              ) : (
-                <p className="text-error">Images link</p>
-              )}
               <Button
                 onClick={handleSubmit}
                 text={textBtn}
@@ -132,7 +127,7 @@ export default function AddHero({ textBtn, edit }) {
           )}
         </Formik>
       ) : (
-        <AddPhoto />
+        <AddPhoto edit={edit} />
       )}
     </div>
   );

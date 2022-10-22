@@ -33,13 +33,13 @@ const fethHeroInfo = (values) => async (dispatch) => {
   }
 };
 
-const editHeroInfo = (values) => async (dispatch) => {
-	const activeHero = useSelector((state) => state.helpers.activeHero);
+const editHeroInfo = (values, activeHero) => async (dispatch) => {
+  console.log(activeHero);
   try {
-     await axios.patch(
-          `http://localhost:8000/api/heroes/${activeHero.id}`,
-          values
-        )
+    await axios.patch(
+      `http://localhost:8000/api/heroes/${activeHero.id}`,
+      values
+    );
     dispatch(setActiveHero(null));
     dispatch(openModal(false));
     dispatch(openModalEdit(false));

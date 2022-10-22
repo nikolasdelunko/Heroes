@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function AddPhoto(textBtn, edit) {
   const [selectedFile, setSelectedFile] = useState(null);
   const heroProfile = useSelector((state) => state.helpers.heroProfile);
+	const activeHero = useSelector((state) => state.helpers.activeHero);
   const dispatch = useDispatch();
   const filePicker = useRef(null);
 
@@ -23,7 +24,8 @@ export default function AddPhoto(textBtn, edit) {
 
   const uploadPhoto = () => {
 		if(heroProfile){
-    fetchFileOperations.fethHeroInfo(heroProfile)(dispatch)
+     edit ? fetchFileOperations.editHeroInfo(heroProfile, activeHero)(dispatch) : fetchFileOperations.fethHeroInfo(heroProfile)(dispatch)
+		 console.log(activeHero.id)
 		}
   };
 
@@ -58,8 +60,7 @@ export default function AddPhoto(textBtn, edit) {
         text={"NO PHOTO"}
         type="button"
         classN="control-btn form-btn"
-        onClick={() => {
-        }}
+        onClick={uploadPhoto}
       />
     </div>
   );
