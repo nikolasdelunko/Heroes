@@ -5,7 +5,7 @@ import {
   openModalEdit,
 } from "./helpersSlice";
 import axios from "axios";
-import { useSelector } from "react-redux";
+
 
 const fetchFileName = (selectedFile) => async (dispatch) => {
   const formData = new FormData();
