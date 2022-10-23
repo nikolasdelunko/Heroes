@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./Header";
 import { unmountComponentAtNode } from "react-dom";
-import {render, screen, waitFor} from '@testing-library/react'
+import { render } from "@testing-library/react";
 
 let container = null;
 
 beforeEach(() => {
-  container = document.createElement('div');
+  container = document.createElement("div");
   document.body.appendChild(container);
 });
 
@@ -18,6 +18,11 @@ afterEach(() => {
 
 describe("Test header", () => {
   test("Smoke test for header", () => {
-		render(<Header />)
-	});
+    render(<Header />);
+  });
+});
+
+test("defulat title is YOU HERO LIST", () => {
+  const { getByText } = render(<Header />);
+  getByText("You hero list")
 });
