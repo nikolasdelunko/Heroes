@@ -1,9 +1,7 @@
-const summ  = (a, b) => {
-	return a + b
-}
-describe("Siple test suite", ()=>{
-test('Simple test', ()=>{
-expect(summ(2, 3)).toBe(5)
-})
+const summ = (a, b) => a + b;
 
-})
+describe("simple test", () => {
+  test("simple test", () => {
+    expect(summ(5, 5)).toBe(10);
+  });
+});
