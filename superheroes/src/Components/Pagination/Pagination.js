@@ -29,8 +29,6 @@ export default function Pagination() {
     ? data?.next.page - 1
     : data?.previous?.page + 1;
 
-  // ! хочу доробити пагинацію ще по цыфрам сторінок
-  // const pages = Math.round(data?.length / limit);
 
   return (
     <div>
@@ -48,9 +46,23 @@ export default function Pagination() {
           >
             <a>Previous</a>
           </li>
-          <li>
+          {data?.previous && (
+            <li className="pagination-el" onClick={()=>{
+							setPage(data?.previous.page);
+						}}>
+              <a>{data?.previous.page}</a>
+            </li>
+          )}
+          <li style={{boxShadow: '0px 0px 6px 12px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%)'}}>
             <a>{currentPage ? currentPage : 1}</a>
           </li>
+          {data?.next && (
+            <li className="pagination-el" onClick={()=>{
+							setPage(data?.next.page);
+						}}>
+              <a>{data?.next.page}</a>
+            </li>
+          )}
           <li
             className="pagination-el"
             onClick={() => {

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot Testing Header snapshot 1`] = `"<div class=\\"header\\"><h1 class=\\"header-text\\">You hero list</h1></div>"`;

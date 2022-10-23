@@ -127,7 +127,7 @@ export default function AddHero({ textBtn, edit }) {
           )}
         </Formik>
       ) : (
-        <AddPhoto edit={edit} />
+        <AddPhoto test edit={edit} />
       )}
     </div>
   );

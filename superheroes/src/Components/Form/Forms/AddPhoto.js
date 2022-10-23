@@ -23,10 +23,8 @@ export default function AddPhoto({edit}) {
 
 
   const uploadPhoto = () => {
-		console.log(edit);
 		if(heroProfile){
      edit ? fetchFileOperations.editHeroInfo(heroProfile, activeHero)(dispatch) : fetchFileOperations.fethHeroInfo(heroProfile)(dispatch)
-		 console.log(edit)
 		}
   };
 

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../store/helpers/helpersSlice";
 
 export default function AddBtn() {
-	const dispatch = useDispatch();
-	const modal = useSelector((state) => state.helpers.modal);
+  const dispatch = useDispatch();
+  const modal = useSelector((state) => state.helpers.modal);
   return (
     <div className="button">
       <span
